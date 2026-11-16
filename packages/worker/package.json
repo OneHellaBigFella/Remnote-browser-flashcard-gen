@@ -1,0 +1,21 @@
+{
+  "name": "@rfg/worker",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "@rfg/core": "*",
+    "linkedom": "^0.18.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "wrangler": "^4.0.0"
+  }
+}

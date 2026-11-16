@@ -1,5 +1,6 @@
 import { declareIndexPlugin, ReactRNPlugin, WidgetLocation } from "@remnote/plugin-sdk";
 import { importIntoDailyDoc, isPayload } from "../importer";
+import { pollInbox } from "../inbox";
 
 const MSG_TYPE = "rfg:import";
 const ACK_TYPE = "rfg:ack";
@@ -22,6 +23,45 @@ async function onActivate(plugin: ReactRNPlugin) {
     title: "Heading for each imported page",
     description: "Prefix shown before the page title under today's Daily Document.",
     defaultValue: "📥",
+  });
+
+  await plugin.settings.registerStringSetting({
+    id: "workerUrl",
+    title: "Phone inbox URL (Cloudflare Worker)",
+    description: "Optional. The https URL of your Flashcard Generator Worker, so cards shared from your phone arrive here.",
+    defaultValue: "",
+  });
+  await plugin.settings.registerStringSetting({
+    id: "pullToken",
+    title: "Phone inbox pull token",
+    description: "The PULL_TOKEN secret you set on the Worker.",
+    defaultValue: "",
+  });
+
+  // 0. Phone inbox: pull finished cards from the Worker on startup and every minute while RemNote is open.
+  const seen = {
+    get: async () => ((await plugin.storage.getSynced<string[]>("seenInboxIds")) ?? []),
+    set: async (ids: string[]) => { await plugin.storage.setSynced("seenInboxIds", ids); },
+  };
+  let polling = false;
+  const checkInbox = async (verbose: boolean) => {
+    if (polling) return;
+    polling = true;
+    try {
+      const workerUrl = (await plugin.settings.getSetting<string>("workerUrl")) ?? "";
+      const pullToken = (await plugin.settings.getSetting<string>("pullToken")) ?? "";
+      const r = await pollInbox(plugin as any, { workerUrl, pullToken }, seen);
+      if (r.imported) plugin.app.toast(`Added ${r.imported} phone page${r.imported > 1 ? "s" : ""} to today's Daily Document`);
+      else if (verbose) plugin.app.toast(r.error === "not-configured" ? "Set the phone inbox URL and token in plugin settings" : r.error ? "Inbox: " + r.error : "Inbox is empty");
+    } finally { polling = false; }
+  };
+  setTimeout(() => void checkInbox(false), 3000);
+  setInterval(() => void checkInbox(false), 60_000);
+  await plugin.app.registerCommand({
+    id: "rfg-check-inbox",
+    name: "Flashcard Generator: check phone inbox now",
+    keywords: "flashcard inbox phone worker",
+    action: () => checkInbox(true),
   });
 
   // 1. Messages from the browser extension (relayed by its content script on remnote.com via postMessage).

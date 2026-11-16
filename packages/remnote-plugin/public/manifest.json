@@ -1,0 +1,15 @@
+{
+  "id": "flashcard-gen-importer",
+  "name": "Flashcard Generator Importer",
+  "author": "Hunter",
+  "description": "Receives flashcards from the Flashcard Generator browser extension and writes them into today's Daily Document.",
+  "version": { "major": 0, "minor": 1, "patch": 0 },
+  "manifestVersion": 1,
+  "repoUrl": "https://github.com/onehellabigfella/remnote-browser-flashcard-gen",
+  "requestNative": false,
+  "enableOnMobile": true,
+  "minimumRemNoteVersion": "1.16.0",
+  "requiredScopes": [
+    { "type": "All", "level": "ReadCreateModifyDelete" }
+  ]
+}

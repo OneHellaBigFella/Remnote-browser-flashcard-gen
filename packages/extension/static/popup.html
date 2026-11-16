@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="popup.css"></head>
+<body>
+<h1>RemNote Flashcards</h1>
+<div id="status" class="muted"></div>
+<button id="gen" class="primary">Generate cards from this page</button>
+<div id="preview" hidden>
+  <div class="muted" id="meta"></div>
+  <textarea id="block" spellcheck="false"></textarea>
+  <div id="warn"></div>
+  <div class="row"><button id="send" class="primary">Send to Daily Doc</button><button id="copy">Copy</button><button id="discard">Discard</button></div>
+</div>
+<div class="row"><button id="flush" hidden></button><a href="#" id="opts">Options</a></div>
+<script src="popup.js"></script></body></html>

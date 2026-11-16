@@ -1,0 +1,17 @@
+{
+  "name": "@rfg/extension",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.6.0",
+    "@rfg/core": "*"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.7",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.65.1"
+  }
+}

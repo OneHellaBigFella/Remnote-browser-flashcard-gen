@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flashcards</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="app.css"></head>
+<body><main>
+<h1>RemNote Flashcards</h1>
+<label>Anthropic API key <input id="key" type="password" autocomplete="off"></label>
+<label>Page URL or pasted text <textarea id="input" placeholder="Share a page here, or paste text"></textarea></label>
+<button id="go">Generate cards</button><p id="status"></p>
+<textarea id="out" hidden spellcheck="false"></textarea>
+<button id="copy" hidden>Copy for RemNote</button>
+<p class="hint">Then in RemNote run the command <b>Flashcard Generator: import cards from clipboard into Daily Document</b>, or paste into today's Daily Document.</p>
+</main><script src="app.js"></script></body></html>

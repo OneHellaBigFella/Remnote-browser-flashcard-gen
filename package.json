@@ -1,0 +1,11 @@
+{
+  "name": "remnote-flashcard-gen",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "test": "npm test -w @rfg/core && npm test -w @rfg/remnote-plugin",
+    "e2e": "RFG_TEST_HOSTS=https://example.test/* npm run build -w @rfg/extension && cd packages/extension && node e2e/e2e.mjs",
+    "build": "npm run build -w @rfg/extension && npm run build -w @rfg/remnote-plugin && npm run build -w @rfg/pwa"
+  }
+}

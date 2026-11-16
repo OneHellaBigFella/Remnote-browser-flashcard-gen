@@ -1,5 +1,5 @@
 import { declareIndexPlugin, ReactRNPlugin, WidgetLocation } from "@remnote/plugin-sdk";
-import { importIntoDailyDoc, isPayload } from "./importer";
+import { importIntoDailyDoc, isPayload } from "../importer";
 
 const MSG_TYPE = "rfg:import";
 const ACK_TYPE = "rfg:ack";

@@ -2,8 +2,18 @@
   "name": "@rfg/remnote-plugin",
   "version": "0.1.0",
   "type": "module",
-  "scripts": { "build": "node build.mjs",
-    "test": "vitest run" },
-  "dependencies": { "@remnote/plugin-sdk": "latest", "react": "^17.0.2", "react-dom": "^17.0.2" },
-  "devDependencies": { "esbuild": "^0.25.0", "vitest": "^2.1.0" }
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@remnote/plugin-sdk": "latest",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "vitest": "^2.1.0"
+  }
 }

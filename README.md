@@ -21,7 +21,10 @@ npm install
 npm run build
 ```
 1. **Extension (desktop):** Chrome/Edge → `chrome://extensions` → Developer mode → *Load unpacked* → `packages/extension/dist/chrome`. Firefox: `about:debugging` → *Load Temporary Add-on* → `packages/extension/dist/firefox/manifest.json`.
-2. **RemNote plugin:** RemNote → Settings → Plugins → *Build* → *Develop from localhost* (or upload a zip of `packages/remnote-plugin/dist`). Run the command **"Flashcard Generator: insert sample cards into Daily Document"** to verify.
+2. **RemNote plugin** (installed per account, not into any document; it asks for access to your whole knowledge base because it must find and write under today's Daily Document):
+   - Quick try: `npm run serve -w @rfg/remnote-plugin` (serves `http://localhost:8080`), then in RemNote: Settings → Plugins → *Build* → *Develop from localhost* → `http://localhost:8080`. Keep the server running while you use it.
+   - Permanent: upload `packages/remnote-plugin/PluginZip.zip` (made by `npm run build`) under Settings → Plugins → *Build* → *Upload plugin zip* (in RemNote's UI the exact wording may differ).
+   - Then run the command **"Flashcard Generator: insert sample cards into Daily Document"** to verify. Open today's Daily Document once first so it exists.
 3. **Pair:** RemNote → Settings → Plugins → *Flashcard Generator Importer* → copy the *Pairing token* into the extension's Options, together with your Anthropic API key.
 
 ## Use
